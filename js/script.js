@@ -136,19 +136,15 @@ autoplay.addEventListener("click", function(){
 
 });
 
-    goRight.addEventListener("click", scrollRight) 
+goRight.addEventListener("click", () =>{
+    clearInterval(interval);
+    interval = setInterval(scroll_Left_Up, 3000);
+}) 
 
-    goLeft.addEventListener("click", scrollLeft);
-
-    function scrollLeft(){
-        clearInterval(interval);
-        interval = setInterval(scroll_Left_Up, 3000);
-    }
-
-    function scrollRight(){
-        clearInterval(interval);
-        interval = setInterval(scroll_Right_Down, 3000);
-    }
+goLeft.addEventListener("click", () =>{
+    clearInterval(interval);
+    interval = setInterval(scroll_Right_Down, 3000);
+});
 
 //Se il mouse non è sopra il bottone, il bottone scompare
 autoplayContainer.addEventListener('mouseleave', function(event){
