@@ -105,7 +105,7 @@ next.addEventListener('click', scroll_Left_Up);
 
 prev.addEventListener('click', scroll_Right_Down);
 
-//Aggiunscroll gli eventi alla freccia a destra e sotto(puoi scorrere premendo la freccia a destra e sotto)
+//Aggiungi gli eventi alla freccia a destra e sotto(puoi scorrere premendo la freccia a destra e sotto)
 document.addEventListener('keydown', (event) => {
     
     if(event.key == "ArrowRight" || event.key == "ArrowDown"){
@@ -114,7 +114,7 @@ document.addEventListener('keydown', (event) => {
 
 }, false);
 
-//Aggiunscroll gli eventi alla freccia a sinistra e sopra(puoi scorrere premendo la freccia a sinistra e sopra)
+//Aggiungi gli eventi alla freccia a sinistra e sopra(puoi scorrere premendo la freccia a sinistra e sopra)
 document.addEventListener('keydown', (event) => {
 
     if(event.key == "ArrowLeft" || event.key == "ArrowUp"){
