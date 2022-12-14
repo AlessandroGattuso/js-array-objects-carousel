@@ -31,7 +31,7 @@ imagesArray.forEach((element, index) => {
 let itemsContentSlider = '';
 let itemsContentPreview = '';
 
-imagesArray.forEach(el => {
+imagesArray.forEach((el, i) => {
     
     itemsContentSlider += `<div class="item">
                                 <img src="${el.url}">
@@ -53,7 +53,6 @@ itemsSlider.innerHTML += itemsContentSlider;
 const itemsPreview = document.querySelector('.preview');
 itemsPreview.innerHTML +=itemsContentPreview;
 
-//Prendiamo la prima immagine dell'array e la rendiamo attiva
 
 //const items = document.querySelector('.item'); //ALTERNATIVA
 const items = document.querySelectorAll('.slider .item');
@@ -87,9 +86,22 @@ for(let i = 0; i < circles.length; i++){
     });
 }
 
+
 next.addEventListener('click', scroll_Left_Up);
 
 prev.addEventListener('click', scroll_Right_Down);
+
+previewItems.forEach((item,i) => {
+    item.addEventListener('click', () => {
+        removeActive();
+
+        //vado a mettere il mio indice in base a quale cerchio l'utente ha cliccato
+        itemActive = i;
+
+    
+        addActive();
+    });
+})
 
 //Aggiungo gli eventi alla freccia a destra e sotto(puoi scorrere premendo la freccia a destra e sotto)
 document.addEventListener('keydown', (event) => {
