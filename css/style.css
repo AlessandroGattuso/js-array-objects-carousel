@@ -136,22 +136,41 @@
     filter: brightness(100%);
 }
 
+#autoplay-container{
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    left: calc(50% - 100px);
+    top: calc(50% - 30px);
+}
+
+#go-right,
+#go-left,
 #autoplay-btn{
     font-size: 30px;
     color: rgba(193, 193, 193, 0.7);
-    border: 4px solid rgba(193, 193, 193, 0.7);
-    position: absolute;
-    top: calc(50% - 30px);
-    left: calc(50% - 30px);
     width: 60px;
     height: 60px;
     cursor: pointer;
-    border-radius: 100%;
     background-color: transparent;
 }
 
+#go-right,
+#go-left{
+    border: none;
+}
+
+#autoplay-btn{
+    border: 4px solid rgba(193, 193, 193, 0.7);
+    border-radius: 100%;
+}
+
+#go-right:focus,
+#go-right.active,
+#go-left:focus,
+#go-left.active,
 #autoplay-btn:focus,
 #autoplay-btn.active{
     color: rgb(255, 128, 37);
-    border-color: rgb(185, 185, 185);
+   /*rgb(185, 185, 185) */
 }

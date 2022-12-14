@@ -112,9 +112,12 @@ document.addEventListener('keydown', (event) => {
 
 }, false);
 
-//Auto play pulsante
+//Auto play sezione
 let interval;
+const autoplayContainer =  document.getElementById('autoplay-container');
 const autoplay = document.getElementById('autoplay-btn');
+const goRight = document.getElementById('go-right');
+const goLeft = document.getElementById('go-left');
 
 autoplay.addEventListener("click", function(){
 
@@ -122,9 +125,7 @@ autoplay.addEventListener("click", function(){
         //se clicca il bottone ed è in pause scorri il carosello(5s)
         this.innerHTML = `<i class="fa-solid fa-pause"></i>`;
         this.classList.add('active');
-
-        interval = setInterval(scroll_Right_Down, 3000);
-
+        
     }
     //se clicca il bottone ed è in play blocca lo scorrimento
     else{
@@ -132,11 +133,25 @@ autoplay.addEventListener("click", function(){
         clearInterval(interval);
         this.classList.remove('active');
     }
+
 });
 
+    goRight.addEventListener("click", scrollRight) 
+
+    goLeft.addEventListener("click", scrollLeft);
+
+    function scrollLeft(){
+        clearInterval(interval);
+        interval = setInterval(scroll_Left_Up, 3000);
+    }
+
+    function scrollRight(){
+        clearInterval(interval);
+        interval = setInterval(scroll_Right_Down, 3000);
+    }
 
 //Se il mouse non è sopra il bottone, il bottone scompare
-autoplay.addEventListener('mouseleave', function(event){
+autoplayContainer.addEventListener('mouseleave', function(event){
 
     if(event)
         setTimeout(()=>this.style.opacity = '0', 3500);
@@ -145,7 +160,7 @@ autoplay.addEventListener('mouseleave', function(event){
 });
 
 //Se il mouse invece entra nell'area del bottone questo appare
-autoplay.addEventListener('mouseenter', function(event){
+autoplayContainer.addEventListener('mouseenter', function(event){
 
     if(event)
         this.style.opacity = '1';
