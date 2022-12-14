@@ -87,7 +87,7 @@ document.getElementsByClassName("circle")[itemActive].classList.add('active');
 const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
 
-//aggiungo degli EventListener ad ogni cerchio di navigazione e se premuto va a quella immagine
+//aggiunscroll degli EventListener ad ogni cerchio di navigazione e se premuto va a quella immagine
 
 //
 previewItems.forEach((item,i) => {
@@ -106,7 +106,7 @@ next.addEventListener('click', scroll_Left_Up);
 
 prev.addEventListener('click', scroll_Right_Down);
 
-//Aggiungo gli eventi alla freccia a destra e sotto(puoi scorrere premendo la freccia a destra e sotto)
+//Aggiunscroll gli eventi alla freccia a destra e sotto(puoi scorrere premendo la freccia a destra e sotto)
 document.addEventListener('keydown', (event) => {
     
     if(event.key == "ArrowRight" || event.key == "ArrowDown"){
@@ -115,7 +115,7 @@ document.addEventListener('keydown', (event) => {
 
 }, false);
 
-//Aggiungo gli eventi alla freccia a sinistra e sopra(puoi scorrere premendo la freccia a sinistra e sopra)
+//Aggiunscroll gli eventi alla freccia a sinistra e sopra(puoi scorrere premendo la freccia a sinistra e sopra)
 document.addEventListener('keydown', (event) => {
 
     if(event.key == "ArrowLeft" || event.key == "ArrowUp"){
@@ -128,8 +128,8 @@ document.addEventListener('keydown', (event) => {
 let interval;
 const autoplayContainer =  document.getElementById('autoplay-container');
 const autoplay = document.getElementById('autoplay-btn');
-const goRight = document.getElementById('go-right');
-const goLeft = document.getElementById('go-left');
+const scrollRight = document.getElementById('scroll-right');
+const scrollLeft = document.getElementById('scroll-left');
 
 autoplay.addEventListener("click", function(){
 
@@ -137,9 +137,9 @@ autoplay.addEventListener("click", function(){
         //se clicca il bottone ed è in pause scorri il carosello(5s)
         this.innerHTML = `<i class="fa-solid fa-pause"></i>`;
 
-        if(goLeft.classList.contains('active'))
+        if(scrollLeft.classList.contains('active'))
             interval = setInterval(scroll_Left_Up, 3000);
-        if(goRight.classList.contains('active'))
+        if(scrollRight.classList.contains('active'))
             interval = setInterval(scroll_Right_Down, 3000);
         
         this.classList.add('active');
@@ -155,22 +155,22 @@ autoplay.addEventListener("click", function(){
 });
 
 // se clicca la freccia a destra dell'autoplay, scorre verso destra
-goRight.addEventListener("click", function(){
+scrollRight.addEventListener("click", function(){
     clearInterval(interval);
     //se la freccia a destra è 'attiva', rimuovi la classe active 
-    if(goLeft.classList.contains('active'))
-            goLeft.classList.remove('active');
+    if(scrollLeft.classList.contains('active'))
+            scrollLeft.classList.remove('active');
     
     this.classList.add('active');
     interval = setInterval(scroll_Right_Down, 3000);
 }) 
 
 // se clicca la freccia a sinistra dell'autoplay, scorre verso sinistra
-goLeft.addEventListener("click", function(){
+scrollLeft.addEventListener("click", function(){
     clearInterval(interval);
     //se la freccia a sinistra è 'attiva', rimuovi la classe active 
-    if(goRight.classList.contains('active'))
-        goRight.classList.remove('active');
+    if(scrollRight.classList.contains('active'))
+        scrollRight.classList.remove('active');
     
     this.classList.add('active');
     interval = setInterval(scroll_Left_Up, 3000);

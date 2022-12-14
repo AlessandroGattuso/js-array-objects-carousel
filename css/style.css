@@ -144,8 +144,8 @@
     top: calc(50% - 30px);
 }
 
-#go-right,
-#go-left,
+#scroll-right,
+#scroll-left,
 #autoplay-btn{
     font-size: 30px;
     color: rgba(193, 193, 193, 0.7);
@@ -155,8 +155,8 @@
     background-color: transparent;
 }
 
-#go-right,
-#go-left{
+#scroll-right,
+#scroll-left{
     border: none;
 }
 
@@ -165,10 +165,10 @@
     border-radius: 100%;
 }
 
-#go-right:focus,
-#go-right.active,
-#go-left:focus,
-#go-left.active,
+#scroll-right:focus,
+#scroll-right.active,
+#scroll-left:focus,
+#scroll-left.active,
 #autoplay-btn:focus,
 #autoplay-btn.active{
     color: rgb(255, 128, 37);
