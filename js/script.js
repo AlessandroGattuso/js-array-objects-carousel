@@ -156,22 +156,22 @@ autoplay.addEventListener("click", function(){
 
 // se clicca la freccia a destra dell'autoplay, scorre verso destra
 goRight.addEventListener("click", function(){
+    clearInterval(interval);
     //se è la freccia a destra è 'attiva' allora cancella l'interval e rimuovi la classe active 
-    if(goLeft.classList.contains('active')){
-            clearInterval(interval);
+    if(goLeft.classList.contains('active'))
             goLeft.classList.remove('active');
-    }
+    
     this.classList.add('active');
     interval = setInterval(scroll_Right_Down, 3000);
 }) 
 
 // se clicca la freccia a sinistra dell'autoplay, scorre verso sinistra
 goLeft.addEventListener("click", function(){
+    clearInterval(interval);
     //se è la freccia a sinistra è 'attiva' allora cancella l'interval e rimuovi la classe active 
-    if(goRight.classList.contains('active')){
-        clearInterval(interval);
+    if(goRight.classList.contains('active'))
         goRight.classList.remove('active');
-    }
+    
     this.classList.add('active');
     interval = setInterval(scroll_Left_Up, 3000);
 });
