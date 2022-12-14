@@ -54,7 +54,6 @@ const itemsPreview = document.querySelector('.preview');
 itemsPreview.innerHTML +=itemsContentPreview;
 
 
-//const items = document.querySelector('.item'); //ALTERNATIVA
 const items = document.querySelectorAll('.slider .item');
 const previewItems = document.querySelectorAll('.preview .item');
 
@@ -82,14 +81,14 @@ for(let i = 0; i < imagesArray.length; i++){
 }
 
 //metto il primo cerchio attivo
-document.getElementsByClassName("circle")[itemActive].classList.add('active');
+circles.childNodes[itemActive+1].classList.add('active');
 
 const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
 
 //aggiunscroll degli EventListener ad ogni cerchio di navigazione e se premuto va a quella immagine
 
-//
+//Rendo le immagini del preview cliccabili
 previewItems.forEach((item,i) => {
     item.addEventListener('click', () => {
         removeActive();
