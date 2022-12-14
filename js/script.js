@@ -27,9 +27,6 @@ imagesArray.forEach((element, index) => {
     element.url = `./img/0${index+1}.webp`;
 });
 
-console.log(imagesArray)
-
-console.log(document.querySelector('.preview'));
 //Creiamo dinamicamente i div con le immagini del carosello
 let itemsContentSlider = '';
 let itemsContentPreview = '';
@@ -136,26 +133,38 @@ autoplay.addEventListener("click", function(){
 
 });
 
-goRight.addEventListener("click", () =>{
-    clearInterval(interval);
-    interval = setInterval(scroll_Left_Up, 3000);
+// se clicca la freccia a destra dell'autoplay, scorre verso destra
+goRight.addEventListener("click", function(){
+    //se è la freccia a destra è 'attiva' allora cancella l'interval e rimuovi la classe active 
+    if(goLeft.classList.contains('active')){
+            clearInterval(interval);
+            goLeft.classList.remove('active');
+    }
+    this.classList.add('active');
+    interval = setInterval(scroll_Right_Down, 3000);
 }) 
 
-goLeft.addEventListener("click", () =>{
-    clearInterval(interval);
-    interval = setInterval(scroll_Right_Down, 3000);
+// se clicca la freccia a sinistra dell'autoplay, scorre verso sinistra
+goLeft.addEventListener("click", function(){
+    //se è la freccia a sinistra è 'attiva' allora cancella l'interval e rimuovi la classe active 
+    if(goRight.classList.contains('active')){
+        clearInterval(interval);
+        goRight.classList.remove('active');
+    }
+    this.classList.add('active');
+    interval = setInterval(scroll_Left_Up, 3000);
 });
 
-//Se il mouse non è sopra il bottone, il bottone scompare
+//Se il mouse non è sopra il container della sezione autoplay, questo scompare
 autoplayContainer.addEventListener('mouseleave', function(event){
 
     if(event)
-        setTimeout(()=>this.style.opacity = '0', 3500);
+        setTimeout(()=>this.style.opacity = '0', 5000);
     
 
 });
 
-//Se il mouse invece entra nell'area del bottone questo appare
+//Se il mouse invece entra nella sezione questo appare
 autoplayContainer.addEventListener('mouseenter', function(event){
 
     if(event)
