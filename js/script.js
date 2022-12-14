@@ -31,7 +31,7 @@ imagesArray.forEach((element, index) => {
 let itemsContentSlider = '';
 let itemsContentPreview = '';
 
-imagesArray.forEach((el, i) => {
+imagesArray.forEach((el) => {
     
     itemsContentSlider += `<div class="item">
                                 <img src="${el.url}">
@@ -63,19 +63,13 @@ let itemActive = 0;
 items[itemActive].classList.add('active');
 previewItems[itemActive].classList.add('active');
 
-//rendo attivo anche il primo cerchio di navigazione
+const circles = document.querySelector('.circles-container');
 
-const circles = document.getElementsByClassName('circle');
-
-circles[itemActive].classList.add('active');
-
-const prev = document.querySelector('.prev');
-const next = document.querySelector('.next');
-
-//aggiungo degli EventListener ad ogni cerchio di navigazione e se premuto va a quella immagine
-for(let i = 0; i < circles.length; i++){
-    let circle = document.getElementById("circle-"+i);
-    circle.addEventListener('click', () => {
+//creo dinamicamente i cerchi
+for(let i = 0; i < imagesArray.length; i++){
+    let circle = document.createElement("div");
+    circle.classList.add("circle");
+    circle.addEventListener('click', function(){
         removeActive();
 
         //vado a mettere il mio indice in base a quale cerchio l'utente ha cliccato
@@ -84,13 +78,18 @@ for(let i = 0; i < circles.length; i++){
     
         addActive();
     });
+    circles.appendChild(circle);
 }
 
+//metto il primo cerchio attivo
+document.getElementsByClassName("circle")[itemActive].classList.add('active');
 
-next.addEventListener('click', scroll_Left_Up);
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
 
-prev.addEventListener('click', scroll_Right_Down);
+//aggiungo degli EventListener ad ogni cerchio di navigazione e se premuto va a quella immagine
 
+//
 previewItems.forEach((item,i) => {
     item.addEventListener('click', () => {
         removeActive();
@@ -102,6 +101,10 @@ previewItems.forEach((item,i) => {
         addActive();
     });
 })
+
+next.addEventListener('click', scroll_Left_Up);
+
+prev.addEventListener('click', scroll_Right_Down);
 
 //Aggiungo gli eventi alla freccia a destra e sotto(puoi scorrere premendo la freccia a destra e sotto)
 document.addEventListener('keydown', (event) => {
@@ -217,13 +220,14 @@ function scroll_Left_Up(){
 //vado a rimuovere la classe active da quello attuale
 function removeActive(){
     items[itemActive].classList.remove('active');
-    circles[itemActive].classList.remove('active');
+    circles.childNodes[itemActive+1].classList.remove('active');
     previewItems[itemActive].classList.remove('active');
 }
 
 //aggiungere la class active all'elemento precedente dell'Array items e cicle
 function addActive(){
+    console.log()
     items[itemActive].classList.add('active');
-    circles[itemActive].classList.add('active');
+    circles.childNodes[itemActive+1].classList.add('active');
     previewItems[itemActive].classList.add('active');
 }
