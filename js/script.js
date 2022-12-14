@@ -131,7 +131,6 @@ const scrollRight = document.getElementById('scroll-right');
 const scrollLeft = document.getElementById('scroll-left');
 
 autoplay.addEventListener("click", function(){
-
     if(this.innerHTML == `<i class="fa-solid fa-play"></i>`){
         //se clicca il bottone ed è in pause scorri il carosello(5s)
         this.innerHTML = `<i class="fa-solid fa-pause"></i>`;
@@ -146,8 +145,8 @@ autoplay.addEventListener("click", function(){
     }
     //se clicca il bottone ed è in play blocca lo scorrimento
     else{
-        this.innerHTML = `<i class="fa-solid fa-play"></i>`;
         clearInterval(interval);
+        this.innerHTML = `<i class="fa-solid fa-play"></i>`;
         this.classList.remove('active');
     }
 
@@ -161,7 +160,10 @@ scrollRight.addEventListener("click", function(){
             scrollLeft.classList.remove('active');
     
     this.classList.add('active');
-    interval = setInterval(scroll_Right_Down, 3000);
+
+    if(autoplay.innerHTML == `<i class="fa-solid fa-pause"></i>`)
+        interval = setInterval(scroll_Right_Down, 3000);
+    
 }) 
 
 // se clicca la freccia a sinistra dell'autoplay, scorre verso sinistra
@@ -172,7 +174,10 @@ scrollLeft.addEventListener("click", function(){
         scrollRight.classList.remove('active');
     
     this.classList.add('active');
-    interval = setInterval(scroll_Left_Up, 3000);
+
+    if(autoplay.innerHTML == `<i class="fa-solid fa-pause"></i>`)
+        interval = setInterval(scroll_Left_Up, 3000);
+
 });
 
 let opacityInterval;
