@@ -157,7 +157,7 @@ autoplay.addEventListener("click", function(){
 // se clicca la freccia a destra dell'autoplay, scorre verso destra
 goRight.addEventListener("click", function(){
     clearInterval(interval);
-    //se è la freccia a destra è 'attiva' allora cancella l'interval e rimuovi la classe active 
+    //se la freccia a destra è 'attiva', rimuovi la classe active 
     if(goLeft.classList.contains('active'))
             goLeft.classList.remove('active');
     
@@ -168,7 +168,7 @@ goRight.addEventListener("click", function(){
 // se clicca la freccia a sinistra dell'autoplay, scorre verso sinistra
 goLeft.addEventListener("click", function(){
     clearInterval(interval);
-    //se è la freccia a sinistra è 'attiva' allora cancella l'interval e rimuovi la classe active 
+    //se la freccia a sinistra è 'attiva', rimuovi la classe active 
     if(goRight.classList.contains('active'))
         goRight.classList.remove('active');
     
@@ -176,21 +176,17 @@ goLeft.addEventListener("click", function(){
     interval = setInterval(scroll_Left_Up, 3000);
 });
 
+let opacityInterval;
+
 //Se il mouse non è sopra il container della sezione autoplay, questo scompare
-autoplayContainer.addEventListener('mouseleave', function(event){
-
-    if(event)
-        setTimeout(()=>this.style.opacity = '0', 5000);
-    
-
+autoplayContainer.addEventListener('mouseleave', function(){
+    clearInterval(opacityInterval);
+    opacityInterval = setTimeout(()=>this.style.opacity = '0', 3000);
 });
 
 //Se il mouse invece entra nella sezione questo appare
-autoplayContainer.addEventListener('mouseenter', function(event){
-
-    if(event)
-        this.style.opacity = '1';
-    
+autoplayContainer.addEventListener('mouseenter', function(){
+    this.style.opacity = '1';    
 });
 
 
