@@ -226,7 +226,6 @@ function removeActive(){
 
 //aggiungere la class active all'elemento precedente dell'Array items e cicle
 function addActive(){
-    console.log()
     items[itemActive].classList.add('active');
     circles.childNodes[itemActive+1].classList.add('active');
     previewItems[itemActive].classList.add('active');
