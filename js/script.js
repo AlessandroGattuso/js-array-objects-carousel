@@ -190,6 +190,7 @@ autoplayContainer.addEventListener('mouseleave', function(){
 
 //Se il mouse invece entra nella sezione questo appare
 autoplayContainer.addEventListener('mouseenter', function(){
+    clearInterval(opacityInterval);
     this.style.opacity = '1';    
 });
 
