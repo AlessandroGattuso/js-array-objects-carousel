@@ -136,12 +136,12 @@ autoplay.addEventListener("click", function(){
     if(this.innerHTML == `<i class="fa-solid fa-play"></i>`){
         //se clicca il bottone ed è in pause scorri il carosello(5s)
         this.innerHTML = `<i class="fa-solid fa-pause"></i>`;
-        if(interval == undefined){
-            if(goLeft.classList.contains('active'))
-                interval = setInterval(scroll_Left_Up, 3000);
-            if(goRight.classList.contains('active'))
-                interval = setInterval(scroll_Right_Down, 3000);
-        }
+
+        if(goLeft.classList.contains('active'))
+            interval = setInterval(scroll_Left_Up, 3000);
+        if(goRight.classList.contains('active'))
+            interval = setInterval(scroll_Right_Down, 3000);
+        
         this.classList.add('active');
         
     }
