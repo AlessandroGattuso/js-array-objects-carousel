@@ -70,6 +70,8 @@ imagesArray.forEach((e, i) => {
     let circle = document.createElement("div");
     circle.classList.add("circle");
     circle.addEventListener('click', function(){
+        interruptInterval();
+        
         removeActive();
 
         //vado a mettere il mio indice in base a quale cerchio l'utente ha cliccato
@@ -90,6 +92,8 @@ const next = document.querySelector('.next');
 //Rendo le immagini del preview cliccabili
 previewItems.forEach((item,i) => {
     item.addEventListener('click', () => {
+        interruptInterval();
+
         removeActive();
 
         //vado a mettere il mio indice in base a quale cerchio l'utente ha cliccato
@@ -100,14 +104,21 @@ previewItems.forEach((item,i) => {
     });
 })
 
-next.addEventListener('click', scroll_Left_Up);
+next.addEventListener('click', ()=>{
+    interruptInterval();
+    scroll_Left_Up();
+});
 
-prev.addEventListener('click', scroll_Right_Down);
+prev.addEventListener('click', ()=>{
+    interruptInterval();
+    scroll_Right_Down();
+});
 
 //Aggiungi gli eventi alla freccia a destra e sotto(puoi scorrere premendo la freccia a destra e sotto)
 document.addEventListener('keydown', (event) => {
     
     if(event.key == "ArrowRight" || event.key == "ArrowDown"){
+       interruptInterval();
        scroll_Right_Down();
     }
 
@@ -117,6 +128,7 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keydown', (event) => {
 
     if(event.key == "ArrowLeft" || event.key == "ArrowUp"){
+        interruptInterval();
         scroll_Left_Up();
     }
 
@@ -131,7 +143,7 @@ const scrollLeft = document.getElementById('scroll-left');
 
 autoplay.addEventListener("click", function(){
     if(this.innerHTML == `<i class="fa-solid fa-play"></i>`){
-        //se clicca il bottone ed è in pause scorri il carosello(5s)
+        //se clicca il bottone ed è in pause scorri il carosello(3s)
         this.innerHTML = `<i class="fa-solid fa-pause"></i>`;
 
         if(scrollLeft.classList.contains('active'))
@@ -229,4 +241,15 @@ function addActive(){
     items[itemActive].classList.add('active');
     circles.childNodes[itemActive+1].classList.add('active');
     previewItems[itemActive].classList.add('active');
+}
+
+//Se l'utente aziona un qualsiasi altro evento rispetto all'autoplay allora questo smetterà di scrollare e scomparirà in 3 secondi
+function interruptInterval(){
+    if(autoplay.innerHTML == `<i class="fa-solid fa-pause"></i>`){
+        autoplay.innerHTML = `<i class="fa-solid fa-play"></i>`;
+        clearInterval(interval);
+        clearInterval(opacityInterval);
+        autoplayContainer.style.opacity = '1';
+        opacityInterval = setTimeout(()=>autoplayContainer.style.opacity = '0', 3000);
+    }
 }
