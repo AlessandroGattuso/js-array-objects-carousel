@@ -59,13 +59,14 @@ const previewItems = document.querySelectorAll('.preview .item');
 
 let itemActive = 0;
 
+//imposto la prima immagine con 'active'
 items[itemActive].classList.add('active');
 previewItems[itemActive].classList.add('active');
 
 const circles = document.querySelector('.circles-container');
 
 //creo dinamicamente i cerchi
-for(let i = 0; i < imagesArray.length; i++){
+Array.prototype.forEach.call(imagesArray, (element, i) => {
     let circle = document.createElement("div");
     circle.classList.add("circle");
     circle.addEventListener('click', function(){
@@ -78,15 +79,13 @@ for(let i = 0; i < imagesArray.length; i++){
         addActive();
     });
     circles.appendChild(circle);
-}
+})
 
 //metto il primo cerchio attivo
 circles.childNodes[itemActive+1].classList.add('active');
 
 const prev = document.querySelector('.prev');
 const next = document.querySelector('.next');
-
-//aggiunscroll degli EventListener ad ogni cerchio di navigazione e se premuto va a quella immagine
 
 //Rendo le immagini del preview cliccabili
 previewItems.forEach((item,i) => {
