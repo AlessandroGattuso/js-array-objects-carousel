@@ -66,7 +66,7 @@ previewItems[itemActive].classList.add('active');
 const circles = document.querySelector('.circles-container');
 
 //creo dinamicamente i cerchi
-Array.prototype.forEach.call(imagesArray, (element, i) => {
+imagesArray.forEach((e, i) => {
     let circle = document.createElement("div");
     circle.classList.add("circle");
     circle.addEventListener('click', function(){
